@@ -32,6 +32,8 @@ function navigateTo(page) {
     } else if (page === 'snake') {
         document.getElementById('snake-page').classList.add('active');
         resetSnakeGame();
+    } else if (page === 'rps') {
+        document.getElementById('rps-page').classList.add('active');
     }
 }
 
@@ -319,6 +321,52 @@ document.addEventListener('keydown', function(e) {
             break;
     }
 });
+
+// Rock Paper Scissors Game Variables
+let rpsPlayerScore = 0;
+let rpsComputerScore = 0;
+
+function playRPS(playerChoice) {
+    const choices = ['rock', 'paper', 'scissors'];
+    const computerChoice = choices[Math.floor(Math.random() * 3)];
+    
+    const choiceEmojis = {
+        'rock': '🪨',
+        'paper': '📄',
+        'scissors': '✂️'
+    };
+    
+    document.getElementById('player-choice').textContent = choiceEmojis[playerChoice];
+    document.getElementById('computer-choice').textContent = choiceEmojis[computerChoice];
+    
+    let result = '';
+    
+    if (playerChoice === computerChoice) {
+        result = "It's a Tie! 🤝";
+    } else if (
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')
+    ) {
+        result = 'You Win! 🎉';
+        rpsPlayerScore++;
+    } else {
+        result = 'Computer Wins! 🤖';
+        rpsComputerScore++;
+    }
+    
+    document.getElementById('rps-score').textContent = `You: ${rpsPlayerScore} | Computer: ${rpsComputerScore}`;
+    document.getElementById('rps-result').textContent = result;
+}
+
+function resetRPSGame() {
+    rpsPlayerScore = 0;
+    rpsComputerScore = 0;
+    document.getElementById('rps-score').textContent = `You: 0 | Computer: 0`;
+    document.getElementById('player-choice').textContent = '-';
+    document.getElementById('computer-choice').textContent = '-';
+    document.getElementById('rps-result').textContent = '';
+}
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
