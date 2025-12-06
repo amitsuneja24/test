@@ -26,6 +26,9 @@ function navigateTo(page) {
     } else if (page === 'tic-tac-toe') {
         document.getElementById('tic-tac-toe-page').classList.add('active');
         resetGame();
+    } else if (page === 'memory') {
+        document.getElementById('memory-page').classList.add('active');
+        resetMemoryGame();
     }
 }
 
@@ -87,7 +90,90 @@ function resetGame() {
     updateBoard();
 }
 
+// Memory Game Variables
+const memoryEmojis = ['🍎', '🍎', '🍊', '🍊', '🍋', '🍋', '🍌', '🍌', 
+                      '🍇', '🍇', '🍓', '🍓', '🍉', '🍉', '🍒', '🍒'];
+let memoryCards = [];
+let firstCard = null;
+let secondCard = null;
+let matchedPairs = 0;
+let moves = 0;
+let canFlip = true;
+
+function initMemoryGame() {
+    const board = document.getElementById('memory-board');
+    board.innerHTML = '';
+    memoryCards = memoryEmojis.sort(() => Math.random() - 0.5);
+    
+    memoryCards.forEach((emoji, index) => {
+        const card = document.createElement('button');
+        card.className = 'memory-card';
+        card.dataset.emoji = emoji;
+        card.dataset.index = index;
+        card.textContent = '?';
+        card.onclick = () => flipMemoryCard(card);
+        board.appendChild(card);
+    });
+}
+
+function flipMemoryCard(card) {
+    if (!canFlip || card.classList.contains('flipped') || card.classList.contains('matched')) {
+        return;
+    }
+    
+    card.textContent = card.dataset.emoji;
+    card.classList.add('flipped');
+    
+    if (firstCard === null) {
+        firstCard = card;
+    } else if (secondCard === null) {
+        secondCard = card;
+        moves++;
+        document.getElementById('moves-counter').textContent = `Moves: ${moves}`;
+        canFlip = false;
+        
+        if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
+            // Match found
+            setTimeout(() => {
+                firstCard.classList.add('matched');
+                secondCard.classList.add('matched');
+                matchedPairs++;
+                firstCard = null;
+                secondCard = null;
+                canFlip = true;
+                
+                if (matchedPairs === 8) {
+                    document.getElementById('memory-status').textContent = `🎉 You won in ${moves} moves!`;
+                }
+            }, 500);
+        } else {
+            // No match
+            setTimeout(() => {
+                firstCard.textContent = '?';
+                secondCard.textContent = '?';
+                firstCard.classList.remove('flipped');
+                secondCard.classList.remove('flipped');
+                firstCard = null;
+                secondCard = null;
+                canFlip = true;
+            }, 800);
+        }
+    }
+}
+
+function resetMemoryGame() {
+    firstCard = null;
+    secondCard = null;
+    matchedPairs = 0;
+    moves = 0;
+    canFlip = true;
+    document.getElementById('moves-counter').textContent = `Moves: 0`;
+    document.getElementById('memory-status').textContent = '';
+    initMemoryGame();
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
     resetGame();
+    initMemoryGame();
 });

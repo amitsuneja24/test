@@ -17,7 +17,11 @@
                     <h2>Tic Tac Toe</h2>
                     <p>Classic game for two players</p>
                 </button>
-                <!-- More games can be added here -->
+                <button class="game-card" onclick="navigateTo('memory')">
+                    <div class="game-icon">🧠</div>
+                    <h2>Memory Game</h2>
+                    <p>Match pairs and test your memory</p>
+                </button>
             </div>
         </div>
     </div>
@@ -47,6 +51,23 @@
             </div>
 
             <div id="game-status" class="game-status"></div>
+        </div>
+    </div>
+
+    <div id="memory-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="navigateTo('home')">← Back to Home</button>
+            <h1>Memory Game</h1>
+            
+            <div class="game-info">
+                <div class="player-info">
+                    <span id="moves-counter">Moves: 0</span>
+                </div>
+                <button class="reset-btn" onclick="resetMemoryGame()">New Game</button>
+            </div>
+
+            <div class="memory-board" id="memory-board"></div>
+            <div id="memory-status" class="game-status"></div>
         </div>
     </div>
 
