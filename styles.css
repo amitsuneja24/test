@@ -226,6 +226,24 @@ h1 {
     min-height: 30px;
 }
 
+/* Snake Game Styles */
+#snake-canvas {
+    display: block;
+    margin: 20px auto;
+    background: white;
+    border: 3px solid white;
+    border-radius: 8px;
+    max-width: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.instructions {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    margin-top: 15px;
+}
+
 /* Responsive Design */
 @media (max-width: 480px) {
     h1 {

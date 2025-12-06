@@ -22,6 +22,11 @@
                     <h2>Memory Game</h2>
                     <p>Match pairs and test your memory</p>
                 </button>
+                <button class="game-card" onclick="navigateTo('snake')">
+                    <div class="game-icon">🐍</div>
+                    <h2>Snake Game</h2>
+                    <p>Eat food and grow longer</p>
+                </button>
             </div>
         </div>
     </div>
@@ -68,6 +73,24 @@
 
             <div class="memory-board" id="memory-board"></div>
             <div id="memory-status" class="game-status"></div>
+        </div>
+    </div>
+
+    <div id="snake-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="navigateTo('home')">← Back to Home</button>
+            <h1>Snake Game</h1>
+            
+            <div class="game-info">
+                <div class="player-info">
+                    <span id="snake-score">Score: 0</span>
+                </div>
+                <button class="reset-btn" onclick="resetSnakeGame()">New Game</button>
+            </div>
+
+            <canvas id="snake-canvas"></canvas>
+            <div id="snake-status" class="game-status"></div>
+            <p class="instructions">Use arrow keys to control the snake</p>
         </div>
     </div>
 
