@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Collection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="home-page" class="page active">
+        <div class="container">
+            <h1>🎮 Game Collection</h1>
+            <p class="subtitle">Choose a game to play</p>
+            <div class="games-grid">
+                <button class="game-card" onclick="navigateTo('tic-tac-toe')">
+                    <div class="game-icon">⭕</div>
+                    <h2>Tic Tac Toe</h2>
+                    <p>Classic game for two players</p>
+                </button>
+                <!-- More games can be added here -->
+            </div>
+        </div>
+    </div>
+
+    <div id="tic-tac-toe-page" class="page">
+        <div class="container">
+            <button class="back-btn" onclick="navigateTo('home')">← Back to Home</button>
+            <h1>Tic Tac Toe</h1>
+            
+            <div class="game-info">
+                <div class="player-info">
+                    <span id="current-player">Player: X</span>
+                </div>
+                <button class="reset-btn" onclick="resetGame()">New Game</button>
+            </div>
+
+            <div class="game-board">
+                <div class="cell" onclick="makeMove(0)"></div>
+                <div class="cell" onclick="makeMove(1)"></div>
+                <div class="cell" onclick="makeMove(2)"></div>
+                <div class="cell" onclick="makeMove(3)"></div>
+                <div class="cell" onclick="makeMove(4)"></div>
+                <div class="cell" onclick="makeMove(5)"></div>
+                <div class="cell" onclick="makeMove(6)"></div>
+                <div class="cell" onclick="makeMove(7)"></div>
+                <div class="cell" onclick="makeMove(8)"></div>
+            </div>
+
+            <div id="game-status" class="game-status"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
